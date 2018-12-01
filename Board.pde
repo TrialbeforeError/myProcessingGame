@@ -30,9 +30,18 @@ class Board {
         tile[j][i].display(i,j);
       }
     }
+	}
     
+    boolean swapTiles(int j,int i) {
+	if (j = 0) { if tile[j+1][i].value = 0 }
+
+	if (j>0 && j<rows-1)
+
+	if (j=rows-1) 
+
+    }
     
-  }
+  PVector checkSwapTiles(int j, int i ){}
   
   
 }

@@ -14,65 +14,91 @@ import java.io.IOException;
 
 public class myProcessingGame extends PApplet {
 
-int boardWidth = 100;
 int edge = 5;
-int tileWidth = 80;
-int tileHeight = 80;
-int numberOfRows = 8;
-int numberOfColumns = 8;
+int tileSide = 80;
+int numberOfRows = 5;
+int numberOfColumns = 5;
+Board board;
 
 public void settings() {
-size((numberOfColumns*tileWidth)+(2*edge),(numberOfRows*tileHeight)+(2*edge));
-	
+size((numberOfColumns*tileSide)+(2*edge),(numberOfRows*tileSide)+(2*edge));
+board = new Board(edge, tileSide, numberOfRows, numberOfColumns);	
+board.populateBoard();
 }
 
 
 
 public void draw() {
+  board.display(); 
 	
 }
 class Board {
+  int firstTileLeftUpperX;
+  int firstTileLeftUpperY;
+  int rows;
+  int columns;
+  int tileSide;
+  Tile [][] tile; 
 
+  Board(int bEdge, int bTileSide, int bNumberOfRows, int bNumberOfColumns)
+  { 
+    firstTileLeftUpperX = bEdge;
+    firstTileLeftUpperY = bEdge;
+    tileSide = bTileSide;
+    rows = bNumberOfRows;
+    columns = bNumberOfColumns;
+    tile = new Tile[rows][columns];
+  }
 
-Board()
-{}
-
-
-
-
+  public void populateBoard() {
+    for (int j = 0; j<rows; j++) {
+      for (int i = 0; i<columns; i++) {
+        tile[j][i] = new Tile((rows*columns - ((j*columns) +i))-1);
+      }
+    }
+  }
+  
+  public void display(){
+  for (int j = 0; j<rows; j++) {
+      for (int i = 0; i<columns; i++) {
+        tile[j][i].display(i,j);
+      }
+    }
+    
+    
+  }
+  
+  
 }
 class Tile{
 
 
 
-int x; 	
-int y;
-int hor;
-int ver;
-boolean isWith;
+int value; 	
 int WITH = color(255);
 int BLACK = color(0);
 
-Tile(int posX, int posY, boolean isWith ) {
-	x = posX;
-	y = posY;
-	hor = 30;
-	ver = 30;
+Tile(int value ) {
+	this.value = value;
 }
 
-public void display() {
-if (isWith) {
-	fill(WITH);}
-	else 
-		{fill(BLACK);}
-
-	rect(x, y, hor, ver);
+public void display(int x, int y , int len) {
+//if (this.value) {
+//	fill(WITH);}
+//	else 
+//		{fill(BLACK);}
+	rect(x, y, len, len);
 }
 
 
+public void display(int i, int j) {
 
+  text(this.value, i*50+50, j*50+50 );
 }
 
+
+
+}
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "myProcessingGame" };
     if (passedArgs != null) {
