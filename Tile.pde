@@ -19,9 +19,9 @@ void display(int x, int y , int len) {
 }
 
 
-void display(int i, int j) {
+void display(int i, int j, int side , int edgeX, int edgeY) {
 
-  text(this.value, i*50+50, j*50+50 );
+  text(this.value, i*side+edgeX, j*side+edgeY );
 }
 
 
