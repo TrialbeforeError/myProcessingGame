@@ -1,7 +1,7 @@
 int edge = 5;
-int tileSide = 80;
-int numberOfRows = 5;
-int numberOfColumns = 5;
+int tileSide = 200;
+int numberOfRows = 3;
+int numberOfColumns = 3;
 Board board;
 
 //void setup() {
